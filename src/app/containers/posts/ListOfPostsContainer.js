@@ -4,7 +4,8 @@ import {postOperations} from "../../../redux/post";
 
 const mapStateToProps = state => ({
     posts: state.post.listOfPosts,
-    postWasCreated: state.post.postWasCreated
+    postWasCreated: state.post.postWasCreated,
+    postWasUpdated: state.post.postWasUpdated
 });
 
 const mapDispatchToProps = {

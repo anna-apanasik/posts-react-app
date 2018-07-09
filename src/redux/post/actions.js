@@ -9,7 +9,12 @@ const createPostAction = () => ({
     type: types.CREATE_POST
 });
 
+const updatePostAction = () => ({
+    type: types.UPDATE_POST
+});
+
 export default ({
     getListOfPostsAction,
-    createPostAction
+    createPostAction,
+    updatePostAction
 });

@@ -5,7 +5,8 @@ import "../../styles/ListOfPostsStyles.scss"
 
 const propTypes = {
     listOfPosts: PropTypes.array,
-    postWasCreated: PropTypes.bool
+    postWasCreated: PropTypes.bool,
+    postWasUpdated: PropTypes.bool
 };
 
 class ListOfPosts extends Component {
@@ -14,7 +15,7 @@ class ListOfPosts extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        if(nextProps.postWasCreated) {
+        if(nextProps.postWasCreated || nextProps.postWasUpdated) {
             this.props.getListOfPosts();
         }
         return true;

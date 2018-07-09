@@ -1,7 +1,16 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import Modal from 'react-bootstrap4-modal';
 
-const propTypes = {};
+const propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    editPost: PropTypes.bool,
+    post: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired
+    }),
+    closeModal: PropTypes.func.isRequired
+};
 
 class PostModal extends Component {
     constructor(props) {
@@ -19,6 +28,17 @@ class PostModal extends Component {
         this.savePost = this.savePost.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.editPost && nextProps.post.title && nextProps.post.text) {
+            this.setState({
+                title: nextProps.post.title,
+                text: nextProps.post.text,
+                titleValid: true,
+                textValid: true
+            })
+        }
+    }
+
     handleChangeField(e) {
         const name = e.target.name;
         const value = e.target.value;
@@ -29,12 +49,21 @@ class PostModal extends Component {
     }
 
     savePost() {
-        this.props.createPost({
-            title: this.state.title,
-            text: this.state.text
-        });
+        if (this.props.editPost) {
+            this.props.updatePost({
+                id: this.props.post.id,
+                title: this.state.title,
+                text: this.state.text
+            })
+        } else {
+            this.props.createPost({
+                title: this.state.title,
+                text: this.state.text
+            });
+        }
 
         this.clearForm();
+        this.props.closeModal();
     }
 
     clearForm() {
@@ -82,56 +111,53 @@ class PostModal extends Component {
 
     render() {
         return (
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title">Post</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <Modal visible={this.props.isOpen} onClickBackdrop={this.props.closeModal}>
+                <div className="modal-header">
+                    <h5 className="modal-title">Post</h5>
+                    <button type="button" className="close" onClick={this.props.closeModal}>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div className="modal-body">
+                    <div className="form-group title-group">
+                        <label>Title</label>
+                        <input type="text"
+                               value={this.state.title}
+                               onChange={this.handleChangeField}
+                               className="form-control form-control-sm"
+                               name="title"
+                               placeholder="Enter title"
+                               required/>
+                        <span className="badge badge-danger">{this.state.formErrors.title}</span>
                     </div>
-                    <div className="modal-body">
-                        <div className="form-group title-group">
-                            <label>Title</label>
-                            <input type="text"
-                                   value={this.state.title}
-                                   onChange={this.handleChangeField}
-                                   className="form-control form-control-sm"
-                                   name="title"
-                                   placeholder="Enter title"
-                                   required/>
-                            <span className="badge badge-danger">{this.state.formErrors.title}</span>
-                        </div>
-
-                        <div className="form-group text-group">
-                            <label>Text</label>
-                            <textarea className="form-control"
-                                      rows="3"
-                                      value={this.state.text}
-                                      onChange={this.handleChangeField}
-                                      placeholder="Enter text"
-                                      name="text"
-                                      required/>
-                            <span className="badge badge-danger">{this.state.formErrors.text}</span>
-                        </div>
-
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button"
-                                className="btn btn-primary"
-                                data-dismiss="modal"
-                                onClick={this.savePost}
-                                disabled={!this.state.formValid}>Save
-                        </button>
+                    <div className="form-group text-group">
+                        <label>Text</label>
+                        <textarea className="form-control"
+                                  rows="3"
+                                  value={this.state.text}
+                                  onChange={this.handleChangeField}
+                                  placeholder="Enter text"
+                                  name="text"
+                                  required/>
+                        <span className="badge badge-danger">{this.state.formErrors.text}</span>
                     </div>
                 </div>
-            </div>
+                <div className="modal-footer">
+                    <button type="button"
+                            className="btn btn-primary"
+                            data-dismiss="modal"
+                            onClick={this.savePost}
+                            disabled={!this.state.formValid}> Save
+                    </button>
+                </div>
+            </Modal>
         )
     }
 }
 
 PostModal.REQUIRED_FIELD_VALIDATION_MESSAGE = 'This field is required';
 PostModal.TOO_LONG_FIELD_VALIDATION_MESSAGE = 'This field is too long';
+
 PostModal.propTypes = propTypes;
 
 export default PostModal;

@@ -22,8 +22,20 @@ const createPost = (post) => (dispatch) => {
             text: post.text
         })
         .accept('application/json')
-        .then((res) => {
+        .then(() => {
             dispatch(actions.createPostAction())
+        })
+        .catch(error => {
+            //TODO error alert
+        })
+};
+
+const updatePost = (post) => (dispatch) => {
+    request
+        .put(appConstants.API_URL + `/posts/${post.id}`)
+        .send(post)
+        .then(() => {
+            dispatch(actions.updatePostAction())
         })
         .catch(error => {
             //TODO error alert
@@ -32,5 +44,6 @@ const createPost = (post) => (dispatch) => {
 
 export default ({
     getListOfPosts,
-    createPost
+    createPost,
+    updatePost
 })
