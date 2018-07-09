@@ -1,7 +1,8 @@
 import types from './types';
 
 const INITIAL_STATE = {
-    listOfPosts: []
+    listOfPosts: [],
+    postWasCreated: false
 };
 
 const postReducer = (state = INITIAL_STATE, action) => {
@@ -10,7 +11,15 @@ const postReducer = (state = INITIAL_STATE, action) => {
             const {value} = action;
             return {
                 ...state,
-                listOfPosts: value
+                listOfPosts: value,
+                postWasCreated: false
+            };
+        }
+
+        case types.CREATE_POST: {
+            return {
+                ...state,
+                postWasCreated: true
             };
         }
 

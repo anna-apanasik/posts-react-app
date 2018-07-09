@@ -4,12 +4,20 @@ import PostItem from "./PostItem";
 import "../../styles/ListOfPostsStyles.scss"
 
 const propTypes = {
-    listOfPosts: PropTypes.array
+    listOfPosts: PropTypes.array,
+    postWasCreated: PropTypes.bool
 };
 
 class ListOfPosts extends Component {
     componentWillMount() {
         this.props.getListOfPosts();
+    }
+
+    shouldComponentUpdate(nextProps) {
+        if(nextProps.postWasCreated) {
+            this.props.getListOfPosts();
+        }
+        return true;
     }
 
     render() {

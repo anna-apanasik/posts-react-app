@@ -14,6 +14,23 @@ const getListOfPosts = () => (dispatch) => {
         })
 };
 
+const createPost = (post) => (dispatch) => {
+    request
+        .post(appConstants.API_URL + '/posts')
+        .send({
+            title: post.title,
+            text: post.text
+        })
+        .accept('application/json')
+        .then((res) => {
+            dispatch(actions.createPostAction())
+        })
+        .catch(error => {
+            //TODO error alert
+        })
+};
+
 export default ({
-    getListOfPosts
+    getListOfPosts,
+    createPost
 })

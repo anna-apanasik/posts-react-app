@@ -5,6 +5,11 @@ const getListOfPostsAction = (value) => ({
     value: value
 });
 
+const createPostAction = () => ({
+    type: types.CREATE_POST
+});
+
 export default ({
-    getListOfPostsAction
+    getListOfPostsAction,
+    createPostAction
 });
