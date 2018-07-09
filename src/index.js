@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom'
 import {Provider} from "react-redux";
 import App from './app/containers/App';
-import registerServiceWorker from './registerServiceWorker';
 import store from "./redux/configureStore";
 
 ReactDOM.render(
@@ -12,5 +11,3 @@ ReactDOM.render(
             <App/>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
-
-registerServiceWorker();

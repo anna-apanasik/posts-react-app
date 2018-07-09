@@ -16,13 +16,29 @@
     "superagent": "^3.8.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "webpack-dev-server --mode development",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.2.0",
     "json-server": "^0.14.0",
-    "redux-devtools": "^3.4.1"
+    "node-sass": "^4.9.1",
+    "postcss-loader": "^2.1.5",
+    "react-hot-loader": "^4.3.3",
+    "redux-devtools": "^3.4.1",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
   }
 }
