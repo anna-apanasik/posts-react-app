@@ -42,8 +42,20 @@ const updatePost = (post) => (dispatch) => {
         })
 };
 
+const deletePost = (id) => (dispatch) => {
+    request
+        .delete(appConstants.API_URL + `/posts/${id}`)
+        .then(() => {
+            dispatch(actions.deletePostAction())
+        })
+        .catch(error => {
+            //TODO error alert
+        })
+};
+
 export default ({
     getListOfPosts,
     createPost,
-    updatePost
+    updatePost,
+    deletePost
 })

@@ -13,8 +13,13 @@ const updatePostAction = () => ({
     type: types.UPDATE_POST
 });
 
+const deletePostAction = () => ({
+    type: types.DELETE_POST
+});
+
 export default ({
     getListOfPostsAction,
     createPostAction,
-    updatePostAction
+    updatePostAction,
+    deletePostAction
 });

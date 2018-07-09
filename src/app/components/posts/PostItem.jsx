@@ -8,7 +8,8 @@ const propTypes = {
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired
-    })
+    }),
+    deletePost: PropTypes.func.isRequired
 };
 
 class PostItem extends Component {
@@ -23,7 +24,7 @@ class PostItem extends Component {
     }
 
     deletePost() {
-
+        this.props.deletePost(this.props.post.id);
     }
 
     openModal() {
@@ -47,7 +48,9 @@ class PostItem extends Component {
                                     onClick={this.openModal}>
                                 <p>Edit</p>
                             </button>
-                            <button type="button" className="delete-button post-button">
+                            <button type="button"
+                                    className="delete-button post-button"
+                                    onClick={this.deletePost}>
                                 <p aria-hidden="true">&times;</p>
                             </button>
                         </div>

@@ -3,7 +3,8 @@ import types from './types';
 const INITIAL_STATE = {
     listOfPosts: [],
     postWasCreated: false,
-    postWasUpdated: false
+    postWasUpdated: false,
+    postWasDeleted: false
 };
 
 const postReducer = (state = INITIAL_STATE, action) => {
@@ -14,7 +15,8 @@ const postReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 listOfPosts: value,
                 postWasCreated: false,
-                postWasUpdated: false
+                postWasUpdated: false,
+                postWasDeleted: false
             };
         }
 
@@ -30,6 +32,13 @@ const postReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 postWasUpdated: true
             };
+        }
+
+        case types.DELETE_POST: {
+            return{
+                ...state,
+                postWasDeleted: true
+            }
         }
 
         default:
