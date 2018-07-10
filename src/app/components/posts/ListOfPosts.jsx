@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 class ListOfPosts extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.getListOfPosts();
     }
 

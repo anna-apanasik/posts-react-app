@@ -24,22 +24,25 @@ class PostModal extends Component {
             titleValid: false,
             textValid: false,
             formValid: false,
-            formErrors: {title: '', text: ''}
+            formErrors: {title: '', text: ''},
+            editPost: false
         };
 
         this.handleChangeField = this.handleChangeField.bind(this);
         this.savePost = this.savePost.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.editPost && nextProps.post.title && nextProps.post.text) {
-            this.setState({
-                title: nextProps.post.title,
-                text: nextProps.post.text,
+    static getDerivedStateFromProps(props, state) {
+        if (props.editPost !== state.editPost && props.post) {
+            return {
+                title: props.post.title,
+                text: props.post.text,
                 titleValid: true,
-                textValid: true
-            });
+                textValid: true,
+                editPost: true
+            };
         }
+        return null;
     }
 
     handleChangeField(e) {
