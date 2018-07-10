@@ -63,6 +63,7 @@ class PostModal extends Component {
             });
         } else {
             this.props.createPost({
+                userId: Math.floor(Math.random() * 10),
                 title: this.state.title,
                 text: this.state.text
             });

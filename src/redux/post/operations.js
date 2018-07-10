@@ -17,10 +17,7 @@ const getListOfPosts = () => (dispatch) => {
 const createPost = (post) => (dispatch) => {
     request
         .post(appConstants.API_URL + '/posts')
-        .send({
-            title: post.title,
-            text: post.text
-        })
+        .send(post)
         .accept('application/json')
         .then(() => {
             dispatch(actions.createPostAction());
@@ -67,10 +64,23 @@ const sortByType = (type) => (dispatch) => {
         })
 };
 
+const filterByTypeWithValue = (type, value) => (dispatch) => {
+    request
+        .get(appConstants.API_URL + `/posts?${type}=${value}`)
+        .accept('application/json')
+        .then(res => {
+            dispatch(actions.filterByTypeWithValueAction(res.body));
+        })
+        .catch(error => {
+            //TODO error alert
+        })
+};
+
 export default ({
     getListOfPosts,
     createPost,
     updatePost,
     deletePost,
-    sortByType
+    sortByType,
+    filterByTypeWithValue
 })

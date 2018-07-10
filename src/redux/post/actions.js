@@ -22,10 +22,16 @@ const sortByTypeAction = (value) => ({
     value: value
 });
 
+const filterByTypeWithValueAction = (value) => ({
+    type: types.FILTER_POSTS_BY_TYPE_WITH_VALUE,
+    value: value
+});
+
 export default ({
     getListOfPostsAction,
     createPostAction,
     updatePostAction,
     deletePostAction,
-    sortByTypeAction
+    sortByTypeAction,
+    filterByTypeWithValueAction
 });

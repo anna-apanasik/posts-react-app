@@ -50,6 +50,14 @@ const postReducer = (state = INITIAL_STATE, action) => {
             }
         }
 
+        case types.FILTER_POSTS_BY_TYPE_WITH_VALUE: {
+            const {value} = action;
+            return {
+                ...state,
+                listOfPosts: value
+            }
+        }
+
         default:
             return state;
     }

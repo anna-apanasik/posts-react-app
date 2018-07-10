@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import PostModalContainer from "../../containers/posts/PostModalContainer";
+import PostModalContainer from "../../containers/modals/PostModalContainer";
 import "../../styles/PostItemStyles.scss";
 
 const propTypes = {

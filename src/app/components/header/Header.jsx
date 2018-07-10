@@ -1,26 +1,43 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import PostModalContainer from "../../containers/posts/PostModalContainer";
+import PostModalContainer from "../../containers/modals/PostModalContainer";
+import FilterModalContainer from "../../containers/modals/FilterModalContainer";
 import "../../styles/HeaderStyles.scss"
 
 const propTypes = {
     sortByType: PropTypes.func.isRequired
 };
 
+const sortingTypes = [
+    {
+        type: 'title',
+        name: 'By title'
+    },
+    {
+        type: 'text',
+        name: 'By text'
+    }];
+
+const openModalButtons = [
+    {
+        name: 'postModal',
+        text: 'Add Post',
+        stateName: 'isOpenPostModal'
+    },
+    {
+        name: 'filterModal',
+        text: 'Filter',
+        stateName: 'isOpenFilterModal'
+    },
+
+];
+
 class Header extends Component {
     constructor() {
         super();
         this.state = {
-            isOpen: false,
-            sortingTypes: [
-                {
-                    type: 'title',
-                    name: 'By title'
-                },
-                {
-                    type: 'text',
-                    name: 'By text'
-                }]
+            isOpenPostModal: false,
+            isOpenFilterModal: false,
         };
 
         this.openModal = this.openModal.bind(this);
@@ -28,12 +45,12 @@ class Header extends Component {
         this.sortByType = this.sortByType.bind(this);
     }
 
-    openModal() {
-        this.setState({isOpen: true});
+    openModal(modalName) {
+        this.setState({[modalName]: true});
     }
 
-    closeModal() {
-        this.setState({isOpen: false});
+    closeModal(modalName) {
+        this.setState({[modalName]: false});
     }
 
     sortByType(sorting) {
@@ -46,10 +63,12 @@ class Header extends Component {
                 <nav className="navbar navbar-expand-lg navbar-light bg-light header-container">
                     <a className="navbar-brand">React App</a>
                     <div className="navbar-buttons">
-                        <button className="btn btn-outline-success my-2 my-sm-0 add-post-button"
-                                type="submit"
-                                onClick={this.openModal}>Add Post
-                        </button>
+                        {openModalButtons.map((item, index) =>
+                            <button className="btn btn-outline-success my-2 my-sm-0 add-post-button"
+                                    type="submit"
+                                    key={index}
+                                    onClick={() => this.openModal(item.stateName)}>{item.text}
+                            </button>)}
                         <div className="dropdown">
                             <button className="btn btn-outline-success dropdown-toggle sort-posts-button"
                                     type="button"
@@ -59,7 +78,7 @@ class Header extends Component {
                                 Sort
                             </button>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                {this.state.sortingTypes.map((item, index) =>
+                                {sortingTypes.map((item, index) =>
                                     <button key={index}
                                             className="dropdown-item"
                                             type="button"
@@ -70,8 +89,12 @@ class Header extends Component {
                     </div>
                 </nav>
                 <div>
-                    <PostModalContainer isOpen={this.state.isOpen}
-                                        closeModal={this.closeModal}/>
+                    <PostModalContainer
+                        isOpen={this.state.isOpenPostModal}
+                        closeModal={() => this.closeModal('isOpenPostModal')}/>
+                    <FilterModalContainer
+                        isOpen={this.state.isOpenFilterModal}
+                        closeModal={() => this.closeModal('isOpenFilterModal')}/>
                 </div>
             </div>
 
