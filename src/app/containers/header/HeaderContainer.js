@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {postOperations} from "../../../redux/post";
+import {postOperations} from "../../../redux/posts";
 import Header from "../../components/header/Header";
 
 const mapDispatchToProps = {

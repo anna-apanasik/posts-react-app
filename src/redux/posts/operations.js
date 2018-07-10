@@ -3,7 +3,7 @@ import * as request from 'superagent';
 import appConstants from '../constants';
 
 const getListOfPosts = () => (dispatch) => {
-    request
+        request
         .get(appConstants.API_URL + '/posts')
         .accept('application/json')
         .then(res => {

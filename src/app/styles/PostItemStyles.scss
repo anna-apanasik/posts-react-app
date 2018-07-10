@@ -4,6 +4,7 @@
 
   .card-body {
     padding-top: 5px;
+    padding-bottom: 0px;
   }
 
   .card-header {
@@ -13,6 +14,7 @@
     padding: 5px 5px 0 0;
     border-bottom: 1px solid #80808059;
     background: transparent;
+    align-items: flex-end;
 
     .buttons {
       .post-button {
@@ -30,5 +32,15 @@
         font-size: 1.15rem
       }
     }
+  }
+
+  .comments-button {
+    background: transparent;
+    border: none;
+    font-size: small;
+    padding: 0;
+    font-weight: bold;
+    outline: none;
+    color: gray;
   }
 }

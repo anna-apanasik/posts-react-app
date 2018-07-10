@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import PostModalContainer from "../../containers/modals/PostModalContainer";
+import ListOfCommentsContainer from "../../containers/comments/ListOfCommentsContainer";
 import "../../styles/PostItemStyles.scss";
 
 const propTypes = {
@@ -16,11 +17,12 @@ class PostItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false
+            isOpenEditModal: false,
+            isOpenPopover: false
         };
 
         this.deletePost = this.deletePost.bind(this);
-        this.openModal = this.openModal.bind(this);
+        this.openEditModal = this.openEditModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
@@ -28,12 +30,12 @@ class PostItem extends Component {
         this.props.deletePost(this.props.post.id);
     }
 
-    openModal() {
-        this.setState({isOpen: true});
+    openEditModal() {
+        this.setState({isOpenEditModal: true});
     }
 
     closeModal() {
-        this.setState({isOpen: false});
+        this.setState({isOpenEditModal: false});
     }
 
     render() {
@@ -46,7 +48,7 @@ class PostItem extends Component {
                         <div className="buttons">
                             <button type="button"
                                     className="edit-button post-button"
-                                    onClick={this.openModal}>
+                                    onClick={this.openEditModal}>
                                 <p>Edit</p>
                             </button>
                             <button type="button"
@@ -57,12 +59,19 @@ class PostItem extends Component {
                         </div>
                     </div>
                     <p className="card-text">{post.text}</p>
+                    <button type="button"
+                            className="comments-button"
+                            onClick={() => this.setState({isOpenPopover: !this.state.isOpenPopover})}>
+                        <p aria-hidden="true">Comments</p>
+                    </button>
                 </div>
                 <div>
-                    <PostModalContainer isOpen={this.state.isOpen}
+                    <PostModalContainer isOpen={this.state.isOpenEditModal}
                                         editPost
                                         closeModal={this.closeModal}
                                         post={post}/>
+                    <ListOfCommentsContainer postId={post.id}
+                                             isOpen={this.state.isOpenPopover}/>
                 </div>
             </div>
         )
