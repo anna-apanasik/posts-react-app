@@ -20,14 +20,14 @@ const sortingTypes = [
 
 const openModalButtons = [
     {
-        name: 'postModal',
+        component: PostModalContainer,
         text: 'Add Post',
-        stateName: 'isOpenPostModal'
+        isOpen: 'isOpenPostModal'
     },
     {
-        name: 'filterModal',
+        component: FilterModalContainer,
         text: 'Filter',
-        stateName: 'isOpenFilterModal'
+        isOpen: 'isOpenFilterModal'
     },
 
 ];
@@ -67,7 +67,7 @@ class Header extends Component {
                             <button className="btn btn-outline-success my-2 my-sm-0 add-post-button"
                                     type="submit"
                                     key={index}
-                                    onClick={() => this.openModal(item.stateName)}>{item.text}
+                                    onClick={() => this.openModal(item.isOpen)}>{item.text}
                             </button>)}
                         <div className="dropdown">
                             <button className="btn btn-outline-success dropdown-toggle sort-posts-button"
@@ -89,15 +89,14 @@ class Header extends Component {
                     </div>
                 </nav>
                 <div>
-                    <PostModalContainer
-                        isOpen={this.state.isOpenPostModal}
-                        closeModal={() => this.closeModal('isOpenPostModal')}/>
-                    <FilterModalContainer
-                        isOpen={this.state.isOpenFilterModal}
-                        closeModal={() => this.closeModal('isOpenFilterModal')}/>
+                    {openModalButtons.map((item, index) => {
+                        let Component = item.component;
+                        return <Component key={index}
+                                          isOpen={this.state[item.isOpen]}
+                                          closeModal={() => this.closeModal(item.isOpen)}/>
+                    })}
                 </div>
             </div>
-
         )
     }
 }
