@@ -16,7 +16,8 @@ const postReducer = (state = INITIAL_STATE, action) => {
                 listOfPosts: value,
                 postWasCreated: false,
                 postWasUpdated: false,
-                postWasDeleted: false
+                postWasDeleted: false,
+                postsWereSortedByType: false
             };
         }
 
@@ -35,9 +36,17 @@ const postReducer = (state = INITIAL_STATE, action) => {
         }
 
         case types.DELETE_POST: {
-            return{
+            return {
                 ...state,
                 postWasDeleted: true
+            }
+        }
+
+        case types.SORT_POSTS_BY_TYPE: {
+            const {value} = action;
+            return {
+                ...state,
+                listOfPosts: value
             }
         }
 

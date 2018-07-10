@@ -3,13 +3,13 @@ import {Route, Switch} from "react-router-dom";
 import {Redirect} from "react-router";
 
 // components
-import Header from "../components/header/Header";
 import ListOfPostsContainer from "./posts/ListOfPostsContainer";
+import HeaderContainer from "./header/HeaderContainer";
 
 const App = () => (
     <div>
         <header>
-            <Header/>
+           <HeaderContainer />
         </header>
         <div>
             <Switch>

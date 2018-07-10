@@ -14,6 +14,8 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
 
+    devtool: 'source-map',
+
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebPackPlugin({

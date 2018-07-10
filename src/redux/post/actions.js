@@ -17,9 +17,15 @@ const deletePostAction = () => ({
     type: types.DELETE_POST
 });
 
+const sortByTypeAction = (value) => ({
+    type: types.SORT_POSTS_BY_TYPE,
+    value: value
+});
+
 export default ({
     getListOfPostsAction,
     createPostAction,
     updatePostAction,
-    deletePostAction
+    deletePostAction,
+    sortByTypeAction
 });

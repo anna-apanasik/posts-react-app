@@ -23,7 +23,7 @@ const createPost = (post) => (dispatch) => {
         })
         .accept('application/json')
         .then(() => {
-            dispatch(actions.createPostAction())
+            dispatch(actions.createPostAction());
         })
         .catch(error => {
             //TODO error alert
@@ -34,8 +34,9 @@ const updatePost = (post) => (dispatch) => {
     request
         .put(appConstants.API_URL + `/posts/${post.id}`)
         .send(post)
+        .accept('application/json')
         .then(() => {
-            dispatch(actions.updatePostAction())
+            dispatch(actions.updatePostAction());
         })
         .catch(error => {
             //TODO error alert
@@ -45,8 +46,21 @@ const updatePost = (post) => (dispatch) => {
 const deletePost = (id) => (dispatch) => {
     request
         .delete(appConstants.API_URL + `/posts/${id}`)
+        .accept('application/json')
         .then(() => {
-            dispatch(actions.deletePostAction())
+            dispatch(actions.deletePostAction());
+        })
+        .catch(error => {
+            //TODO error alert
+        })
+};
+
+const sortByType = (type) => (dispatch) => {
+    request
+        .get(appConstants.API_URL + `/posts?_sort=${type}&_order=asc`)
+        .accept('application/json')
+        .then(res => {
+            dispatch(actions.sortByTypeAction(res.body));
         })
         .catch(error => {
             //TODO error alert
@@ -57,5 +71,6 @@ export default ({
     getListOfPosts,
     createPost,
     updatePost,
-    deletePost
+    deletePost,
+    sortByType
 })
