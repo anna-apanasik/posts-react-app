@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import "../../styles/ListOfPostsStyles.scss"
 import PostItemContainer from "../../containers/posts/PostItemContainer";
+import "../../styles/ListOfPostsStyles.scss"
 
 const propTypes = {
     listOfPosts: PropTypes.array,
@@ -16,7 +16,7 @@ class ListOfPosts extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        if(nextProps.postWasCreated || nextProps.postWasUpdated || nextProps.postWasDeleted) {
+        if (nextProps.postWasCreated || nextProps.postWasUpdated || nextProps.postWasDeleted) {
             this.props.getListOfPosts();
         }
         return true;

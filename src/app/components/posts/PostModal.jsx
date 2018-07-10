@@ -6,10 +6,13 @@ const propTypes = {
     isOpen: PropTypes.bool.isRequired,
     editPost: PropTypes.bool,
     post: PropTypes.shape({
+        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired
     }),
-    closeModal: PropTypes.func.isRequired
+    closeModal: PropTypes.func.isRequired,
+    createPost: PropTypes.func.isRequired,
+    updatePost: PropTypes.func.isRequired
 };
 
 class PostModal extends Component {
@@ -35,7 +38,7 @@ class PostModal extends Component {
                 text: nextProps.post.text,
                 titleValid: true,
                 textValid: true
-            })
+            });
         }
     }
 
@@ -54,7 +57,7 @@ class PostModal extends Component {
                 id: this.props.post.id,
                 title: this.state.title,
                 text: this.state.text
-            })
+            });
         } else {
             this.props.createPost({
                 title: this.state.title,
@@ -98,6 +101,7 @@ class PostModal extends Component {
             default:
                 break;
         }
+
         this.setState({
             formErrors: fieldValidationErrors,
             titleValid: titleValid,
@@ -114,7 +118,9 @@ class PostModal extends Component {
             <Modal visible={this.props.isOpen} onClickBackdrop={this.props.closeModal}>
                 <div className="modal-header">
                     <h5 className="modal-title">Post</h5>
-                    <button type="button" className="close" onClick={this.props.closeModal}>
+                    <button type="button"
+                            className="close"
+                            onClick={this.props.closeModal}>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

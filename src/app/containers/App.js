@@ -2,19 +2,18 @@ import React from 'react';
 import {Route, Switch} from "react-router-dom";
 import {Redirect} from "react-router";
 
-// components
 import ListOfPostsContainer from "./posts/ListOfPostsContainer";
 import HeaderContainer from "./header/HeaderContainer";
 
 const App = () => (
     <div>
         <header>
-           <HeaderContainer />
+            <HeaderContainer/>
         </header>
         <div>
             <Switch>
                 <Route exact path='/' render={() => (<Redirect to="/posts"/>)}/>
-                <Route path='/posts' component={ListOfPostsContainer} />
+                <Route path='/posts' component={ListOfPostsContainer}/>
             </Switch>
         </div>
     </div>

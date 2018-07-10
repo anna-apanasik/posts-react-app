@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import PostModalContainer from "../../containers/posts/PostModalContainer";
 import "../../styles/HeaderStyles.scss"
+
+const propTypes = {
+    sortByType: PropTypes.func.isRequired
+};
 
 class Header extends Component {
     constructor() {
@@ -24,7 +29,7 @@ class Header extends Component {
     }
 
     openModal() {
-        this.setState({isOpen: true})
+        this.setState({isOpen: true});
     }
 
     closeModal() {
@@ -73,5 +78,7 @@ class Header extends Component {
         )
     }
 }
+
+Header.propTypes = propTypes;
 
 export default Header;

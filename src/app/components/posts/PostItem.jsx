@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import "../../styles/PostItemStyles.scss";
 import PostModalContainer from "../../containers/posts/PostModalContainer";
+import "../../styles/PostItemStyles.scss";
 
 const propTypes = {
     post: PropTypes.shape({
@@ -18,6 +18,7 @@ class PostItem extends Component {
         this.state = {
             isOpen: false
         };
+
         this.deletePost = this.deletePost.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -28,7 +29,7 @@ class PostItem extends Component {
     }
 
     openModal() {
-        this.setState({isOpen: true})
+        this.setState({isOpen: true});
     }
 
     closeModal() {
@@ -36,7 +37,7 @@ class PostItem extends Component {
     }
 
     render() {
-        const post = this.props.post;
+        const {post} = this.props;
         return (
             <div className="card post-item">
                 <div className="card-body">
@@ -63,7 +64,8 @@ class PostItem extends Component {
                                         closeModal={this.closeModal}
                                         post={post}/>
                 </div>
-            </div>)
+            </div>
+        )
     }
 }
 
