@@ -6,10 +6,10 @@ import CommentItemContainer from "../../containers/comments/CommentItemContainer
 const propTypes = {
     postId: PropTypes.number.isRequired,
     postIdFromRequest: PropTypes.number,
-    putLike: PropTypes.number,
+    putLike: PropTypes.bool,
+    comments: PropTypes.array,
     isOpen: PropTypes.bool.isRequired,
-    getCommentsByPostId: PropTypes.func.isRequired,
-    comments: PropTypes.array
+    getCommentsByPostId: PropTypes.func.isRequired
 };
 
 class ListOfComments extends Component {
