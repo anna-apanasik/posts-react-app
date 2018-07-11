@@ -15,7 +15,7 @@ const filteringTypes = [
     }
 ];
 
-class FilterModal extends Component {
+export default class FilterModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -91,5 +91,3 @@ class FilterModal extends Component {
 }
 
 FilterModal.propTypes = propTypes;
-
-export default FilterModal;

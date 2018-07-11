@@ -32,7 +32,7 @@ const openModalButtons = [
 
 ];
 
-class Header extends Component {
+export default class Header extends Component {
     constructor() {
         super();
         this.state = {
@@ -102,5 +102,3 @@ class Header extends Component {
 }
 
 Header.propTypes = propTypes;
-
-export default Header;

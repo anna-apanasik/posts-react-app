@@ -13,7 +13,7 @@ const propTypes = {
     deletePost: PropTypes.func.isRequired
 };
 
-class PostItem extends Component {
+export default class PostItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -79,5 +79,3 @@ class PostItem extends Component {
 }
 
 PostItem.propTypes = propTypes;
-
-export default PostItem;

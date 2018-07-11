@@ -10,7 +10,7 @@ const propTypes = {
     postWasDeleted: PropTypes.bool
 };
 
-class ListOfPosts extends Component {
+export default class ListOfPosts extends Component {
     componentDidMount() {
         this.props.getListOfPosts();
     }
@@ -40,5 +40,3 @@ class ListOfPosts extends Component {
 }
 
 ListOfPosts.propTypes = propTypes;
-
-export default ListOfPosts;

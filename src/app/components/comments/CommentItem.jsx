@@ -13,7 +13,7 @@ const propTypes = {
     putLikeOnComment: PropTypes.func.isRequired
 };
 
-class CommentItem extends Component {
+export default class CommentItem extends Component {
     putLike() {
         this.props.comment.likes += 1;
         this.props.putLikeOnComment(this.props.comment);
@@ -41,5 +41,3 @@ class CommentItem extends Component {
 }
 
 CommentItem.propTypes = propTypes;
-
-export default CommentItem;

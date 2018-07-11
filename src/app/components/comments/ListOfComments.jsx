@@ -12,7 +12,7 @@ const propTypes = {
     getCommentsByPostId: PropTypes.func.isRequired
 };
 
-class ListOfComments extends Component {
+export default class ListOfComments extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,5 +53,3 @@ class ListOfComments extends Component {
 }
 
 ListOfComments.propTypes = propTypes;
-
-export default ListOfComments;

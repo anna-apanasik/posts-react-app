@@ -17,21 +17,21 @@
       "postId": 1,
       "id": 1,
       "username": "Bret",
-      "likes": 3,
+      "likes": 21,
       "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
     },
     {
       "postId": 1,
       "id": 2,
       "username": "Bret",
-      "likes": 1,
+      "likes": 12,
       "body": "est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et"
     },
     {
       "postId": 3,
       "id": 5,
       "username": "Bret",
-      "likes": 2,
+      "likes": 11,
       "body": "harum non quasi et ratione\ntempore iure ex voluptates in ratione\nharum architecto fugit inventore cupiditate\nvoluptates magni quo et"
     }
   ],

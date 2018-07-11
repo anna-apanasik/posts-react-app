@@ -15,7 +15,10 @@ const propTypes = {
     updatePost: PropTypes.func.isRequired
 };
 
-class PostModal extends Component {
+const REQUIRED_FIELD_VALIDATION_MESSAGE = 'This field is required',
+    TOO_LONG_FIELD_VALIDATION_MESSAGE = 'This field is too long';
+
+export default class PostModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -87,13 +90,13 @@ class PostModal extends Component {
             case 'title':
                 titleValid = value.length !== 0;
                 if (!titleValid) {
-                    fieldValidationErrors.title = PostModal.REQUIRED_FIELD_VALIDATION_MESSAGE;
+                    fieldValidationErrors.title = REQUIRED_FIELD_VALIDATION_MESSAGE;
                     break;
                 }
 
                 titleValid = value.length <= 30;
                 if (!titleValid) {
-                    fieldValidationErrors.title = PostModal.TOO_LONG_FIELD_VALIDATION_MESSAGE;
+                    fieldValidationErrors.title = TOO_LONG_FIELD_VALIDATION_MESSAGE;
                     break;
                 }
 
@@ -101,7 +104,7 @@ class PostModal extends Component {
                 break;
             case 'text':
                 textValid = value.length !== 0;
-                fieldValidationErrors.text = textValid ? '' : PostModal.REQUIRED_FIELD_VALIDATION_MESSAGE;
+                fieldValidationErrors.text = textValid ? '' : REQUIRED_FIELD_VALIDATION_MESSAGE;
                 break;
             default:
                 break;
@@ -166,9 +169,4 @@ class PostModal extends Component {
     }
 }
 
-PostModal.REQUIRED_FIELD_VALIDATION_MESSAGE = 'This field is required';
-PostModal.TOO_LONG_FIELD_VALIDATION_MESSAGE = 'This field is too long';
-
 PostModal.propTypes = propTypes;
-
-export default PostModal;
