@@ -5,6 +5,12 @@ const getListOfCommentsByPostIdAction = (value) => ({
     value: value
 });
 
+const putLikeOnCommentAction = (value) => ({
+    type: types.PUT_LIKE_ON_COMMENT,
+    value: value
+});
+
 export default {
-    getListOfCommentsByPostIdAction
+    getListOfCommentsByPostIdAction,
+    putLikeOnCommentAction
 }

@@ -18,7 +18,7 @@ class PostItem extends Component {
         super(props);
         this.state = {
             isOpenEditModal: false,
-            isOpenPopover: false
+            isOpenCollapse: false
         };
 
         this.deletePost = this.deletePost.bind(this);
@@ -61,7 +61,7 @@ class PostItem extends Component {
                     <p className="card-text">{post.text}</p>
                     <button type="button"
                             className="comments-button"
-                            onClick={() => this.setState({isOpenPopover: !this.state.isOpenPopover})}>
+                            onClick={() => this.setState({isOpenCollapse: !this.state.isOpenCollapse})}>
                         <p aria-hidden="true">Comments</p>
                     </button>
                 </div>
@@ -71,7 +71,7 @@ class PostItem extends Component {
                                         closeModal={this.closeModal}
                                         post={post}/>
                     <ListOfCommentsContainer postId={post.id}
-                                             isOpen={this.state.isOpenPopover}/>
+                                             isOpen={this.state.isOpenCollapse}/>
                 </div>
             </div>
         )

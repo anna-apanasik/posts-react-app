@@ -14,6 +14,20 @@ const getCommentsByPostId = (postId) => (dispatch) => {
         })
 };
 
+const putLikeOnComment = (comment) =>(dispatch) => {
+    request
+        .put(appConstants.API_URL + `/comments/${comment.id}`)
+        .accept('application/json')
+        .send(comment)
+        .then(() => {
+            dispatch(actions.putLikeOnCommentAction(comment.postId));
+        })
+        .catch(error => {
+            //TODO error alert
+        })
+};
+
 export default {
-    getCommentsByPostId
+    getCommentsByPostId,
+    putLikeOnComment
 }

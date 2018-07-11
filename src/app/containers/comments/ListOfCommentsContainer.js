@@ -4,7 +4,8 @@ import ListOfComments from "../../components/comments/ListOfComments";
 
 const mapStateToProps = state => ({
     comments: state.comment.comments,
-    postIdFromRequest: state.comment.postId
+    postIdFromRequest: state.comment.postId,
+    putLike: state.comment.putLike
 });
 
 const mapDispatchToProps = {

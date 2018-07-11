@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Collapse from 'react-css-collapse';
-import CommentItem from "./CommentItem";
+import CommentItemContainer from "../../containers/comments/CommentItemContainer";
 
 const propTypes = {
     postId: PropTypes.number.isRequired,
     postIdFromRequest: PropTypes.number,
+    putLike: PropTypes.number,
     isOpen: PropTypes.bool.isRequired,
     getCommentsByPostId: PropTypes.func.isRequired,
     comments: PropTypes.array
@@ -17,13 +18,9 @@ class ListOfComments extends Component {
         this.state = {
             comments: []
         };
+
         this.props.getCommentsByPostId(this.props.postId);
-
     }
-
-    // componentWillMount() {
-    //     this.props.getCommentsByPostId(this.props.postId);
-    // }
 
     static getDerivedStateFromProps(props) {
         if (props.postIdFromRequest === props.postId) {
@@ -32,24 +29,26 @@ class ListOfComments extends Component {
             };
         }
 
+        if (props.putLike) {
+            props.getCommentsByPostId(props.postIdFromRequest);
+        }
+
         return null;
     }
 
     render() {
-
         return (
             <Collapse isOpen={this.props.isOpen}>
-                    <div className="container">
-                    {this.state.comments ? this.state.comments.map((item, index) =>
-                        {console.log('comment', Object.assign({}, item))
-                            return (<CommentItem key={index}
-                                         comment={item}/>)})
-                        : null}
-                    </div>
-
+                <div className="container">
+                    {this.state.comments ?
+                        this.state.comments.map((item, index) => {
+                            return (<CommentItemContainer key={index}
+                                                          comment={item}/>)
+                        }) :
+                        null}
+                </div>
             </Collapse>
         )
-
     }
 }
 
