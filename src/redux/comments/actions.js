@@ -13,4 +13,4 @@ const putLikeOnCommentAction = (value) => ({
 export default {
     getListOfCommentsByPostIdAction,
     putLikeOnCommentAction
-}
+};

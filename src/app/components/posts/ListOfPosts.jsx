@@ -10,6 +10,13 @@ const propTypes = {
     postWasDeleted: PropTypes.bool
 };
 
+const defaultProps = {
+    listOfPosts: [],
+    postWasCreated: false,
+    postWasUpdated: false,
+    postWasDeleted: false
+};
+
 export default class ListOfPosts extends Component {
     componentDidMount() {
         this.props.getListOfPosts();
@@ -40,3 +47,4 @@ export default class ListOfPosts extends Component {
 }
 
 ListOfPosts.propTypes = propTypes;
+ListOfPosts.defaultProps = defaultProps;

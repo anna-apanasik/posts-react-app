@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
-import {postOperations} from "../../../redux/posts";
-import PostItem from "../../components/posts/PostItem";
+import {postOperations} from '../../../redux/posts';
+import PostItem from '../../components/posts/PostItem';
 
 const mapDispatchToProps = {
-    deletePost: postOperations.deletePost,
+    deletePost: postOperations.deletePost
 };
 
 const PostItemContainer = connect(

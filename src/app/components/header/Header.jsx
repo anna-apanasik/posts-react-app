@@ -28,8 +28,7 @@ const openModalButtons = [
         component: FilterModalContainer,
         text: 'Filter',
         isOpen: 'isOpenFilterModal'
-    },
-
+    }
 ];
 
 export default class Header extends Component {
@@ -64,37 +63,39 @@ export default class Header extends Component {
                     <a className="navbar-brand">React App</a>
                     <div className="navbar-buttons">
                         {openModalButtons.map((item, index) =>
-                            <button className="btn btn-outline-success my-2 my-sm-0 add-post-button"
-                                    type="submit"
-                                    key={index}
-                                    onClick={() => this.openModal(item.isOpen)}>{item.text}
+                            <button
+                                className="btn btn-outline-success my-2 my-sm-0 add-post-button"
+                                type="submit"
+                                key={index}
+                                onClick={() => this.openModal(item.isOpen)}>{item.text}
                             </button>)}
                         <div className="dropdown">
-                            <button className="btn btn-outline-success dropdown-toggle sort-posts-button"
-                                    type="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
+                            <button
+                                className="btn btn-outline-success dropdown-toggle sort-posts-button"
+                                type="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
                                 Sort
                             </button>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 {sortingTypes.map((item, index) =>
-                                    <button key={index}
-                                            className="dropdown-item"
-                                            type="button"
-                                            onClick={() => this.sortByType(item)}> {item.name}
+                                    <button
+                                        key={index}
+                                        className="dropdown-item"
+                                        type="button"
+                                        onClick={() => this.sortByType(item)}> {item.name}
                                     </button>)}
                             </div>
                         </div>
                     </div>
                 </nav>
                 <div>
-                    {openModalButtons.map((item, index) => {
-                        let Component = item.component;
-                        return <Component key={index}
-                                          isOpen={this.state[item.isOpen]}
-                                          closeModal={() => this.closeModal(item.isOpen)}/>
-                    })}
+                    {openModalButtons.map((item, index) =>
+                        <item.component
+                            key={index}
+                            isOpen={this.state[item.isOpen]}
+                            closeModal={() => this.closeModal(item.isOpen)}/>)}
                 </div>
             </div>
         )

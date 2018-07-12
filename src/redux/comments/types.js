@@ -4,4 +4,4 @@ const PUT_LIKE_ON_COMMENT = 'PUT_LIKE_ON_COMMENT';
 export default {
     GET_LIST_OF_COMMENTS_BY_POST_ID,
     PUT_LIKE_ON_COMMENT
-}
+};

@@ -3,15 +3,15 @@ import * as request from 'superagent';
 import appConstants from '../constants';
 
 const getListOfPosts = () => (dispatch) => {
-        request
+    request
         .get(appConstants.API_URL + '/posts')
         .accept('application/json')
         .then(res => {
             dispatch(actions.getListOfPostsAction(res.body));
         })
-        .catch(error => {
-            //TODO error alert
-        })
+        .catch(() => {
+            //  TODO error alert
+        });
 };
 
 const createPost = (post) => (dispatch) => {
@@ -22,9 +22,9 @@ const createPost = (post) => (dispatch) => {
         .then(() => {
             dispatch(actions.createPostAction());
         })
-        .catch(error => {
-            //TODO error alert
-        })
+        .catch(() => {
+            //  TODO error alert
+        });
 };
 
 const updatePost = (post) => (dispatch) => {
@@ -35,9 +35,9 @@ const updatePost = (post) => (dispatch) => {
         .then(() => {
             dispatch(actions.updatePostAction());
         })
-        .catch(error => {
-            //TODO error alert
-        })
+        .catch(() => {
+            //  TODO error alert
+        });
 };
 
 const deletePost = (id) => (dispatch) => {
@@ -47,9 +47,9 @@ const deletePost = (id) => (dispatch) => {
         .then(() => {
             dispatch(actions.deletePostAction());
         })
-        .catch(error => {
-            //TODO error alert
-        })
+        .catch(() => {
+            //  TODO error alert
+        });
 };
 
 const sortByType = (type) => (dispatch) => {
@@ -59,9 +59,9 @@ const sortByType = (type) => (dispatch) => {
         .then(res => {
             dispatch(actions.sortByTypeAction(res.body));
         })
-        .catch(error => {
-            //TODO error alert
-        })
+        .catch(() => {
+            //  TODO error alert
+        });
 };
 
 const filterByTypeWithValue = (type, value) => (dispatch) => {
@@ -71,9 +71,9 @@ const filterByTypeWithValue = (type, value) => (dispatch) => {
         .then(res => {
             dispatch(actions.filterByTypeWithValueAction(res.body));
         })
-        .catch(error => {
-            //TODO error alert
-        })
+        .catch(() => {
+            //  TODO error alert
+        });
 };
 
 export default ({
@@ -83,4 +83,4 @@ export default ({
     deletePost,
     sortByType,
     filterByTypeWithValue
-})
+});

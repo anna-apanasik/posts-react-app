@@ -9,7 +9,7 @@ const propTypes = {
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired
-    }),
+    }).isRequired,
     deletePost: PropTypes.func.isRequired
 };
 
@@ -46,32 +46,37 @@ export default class PostItem extends Component {
                     <div className="card-header">
                         <h5 className="card-title">{post.title}</h5>
                         <div className="buttons">
-                            <button type="button"
-                                    className="edit-button post-button"
-                                    onClick={this.openEditModal}>
+                            <button
+                                type="button"
+                                className="edit-button post-button"
+                                onClick={this.openEditModal}>
                                 <p>Edit</p>
                             </button>
-                            <button type="button"
-                                    className="delete-button post-button"
-                                    onClick={this.deletePost}>
+                            <button
+                                type="button"
+                                className="delete-button post-button"
+                                onClick={this.deletePost}>
                                 <p aria-hidden="true">&times;</p>
                             </button>
                         </div>
                     </div>
                     <p className="card-text">{post.text}</p>
-                    <button type="button"
-                            className="comments-button"
-                            onClick={() => this.setState({isOpenCollapse: !this.state.isOpenCollapse})}>
+                    <button
+                        type="button"
+                        className="comments-button"
+                        onClick={() => this.setState({isOpenCollapse: !this.state.isOpenCollapse})}>
                         <p aria-hidden="true">Comments</p>
                     </button>
                 </div>
                 <div>
-                    <PostModalContainer isOpen={this.state.isOpenEditModal}
-                                        editPost
-                                        closeModal={this.closeModal}
-                                        post={post}/>
-                    <ListOfCommentsContainer postId={post.id}
-                                             isOpen={this.state.isOpenCollapse}/>
+                    <PostModalContainer
+                        isOpen={this.state.isOpenEditModal}
+                        editPost
+                        closeModal={this.closeModal}
+                        post={post}/>
+                    <ListOfCommentsContainer
+                        postId={post.id}
+                        isOpen={this.state.isOpenCollapse}/>
                 </div>
             </div>
         )

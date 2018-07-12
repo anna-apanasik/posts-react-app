@@ -9,7 +9,7 @@ const propTypes = {
         username: PropTypes.string.isRequired,
         body: PropTypes.string.isRequired,
         likes: PropTypes.number.isRequired
-    }),
+    }).isRequired,
     putLikeOnComment: PropTypes.func.isRequired
 };
 
@@ -29,9 +29,7 @@ export default class CommentItem extends Component {
                 </div>
                 <div className="card-footer">
                     <div className="title-like">Likes {likes}</div>
-                    <button type="button"
-                            className="like-button"
-                            onClick={this.putLike.bind(this)}>
+                    <button type="button" className="like-button" onClick={this.putLike.bind(this)}>
                         <MdFavorite/>
                     </button>
                 </div>

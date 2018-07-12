@@ -12,6 +12,12 @@ const propTypes = {
     getCommentsByPostId: PropTypes.func.isRequired
 };
 
+const defaultProps = {
+    postIdFromRequest: 0,
+    putLike: false,
+    comments: []
+};
+
 export default class ListOfComments extends Component {
     constructor(props) {
         super(props);
@@ -41,10 +47,8 @@ export default class ListOfComments extends Component {
             <Collapse isOpen={this.props.isOpen}>
                 <div className="container">
                     {this.state.comments ?
-                        this.state.comments.map((item, index) => {
-                            return (<CommentItemContainer key={index}
-                                                          comment={item}/>)
-                        }) :
+                        this.state.comments.map((item, index) =>
+                            <CommentItemContainer key={index} comment={item}/>) :
                         null}
                 </div>
             </Collapse>
@@ -53,3 +57,4 @@ export default class ListOfComments extends Component {
 }
 
 ListOfComments.propTypes = propTypes;
+ListOfComments.defaultProps = defaultProps;

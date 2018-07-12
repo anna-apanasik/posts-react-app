@@ -51,38 +51,43 @@ export default class FilterModal extends Component {
             <Modal visible={this.props.isOpen} onClickBackdrop={this.props.closeModal}>
                 <div className="modal-header">
                     <h5 className="modal-title">Filter</h5>
-                    <button type="button"
-                            className="close"
-                            onClick={this.props.closeModal}>
+                    <button
+                        type="button"
+                        className="close"
+                        onClick={this.props.closeModal}>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div className="modal-body">
                     <div className="form-group">
                         <label>Select type of filter</label>
-                        <select className="form-control"
-                                onSelect={this.handleChangeSelect}>
+                        <select
+                            className="form-control"
+                            onSelect={this.handleChangeSelect}>
                             {filteringTypes.map((item, index) =>
-                                <option key={index}
-                                        value={item.type}> {item.name}
+                                <option
+                                    key={index}
+                                    value={item.type}> {item.name}
                                 </option>)}
                         </select>
                     </div>
                     <div className="form-group">
                         <label>Value</label>
-                        <input type="text"
-                               value={this.state.value}
-                               onChange={this.handleChangeValue}
-                               className="form-control form-control-sm"
-                               placeholder="Enter value for filter"/>
+                        <input
+                            type="text"
+                            value={this.state.value}
+                            onChange={this.handleChangeValue}
+                            className="form-control form-control-sm"
+                            placeholder="Enter value for filter"/>
                     </div>
                 </div>
                 <div className="modal-footer">
-                    <button type="button"
-                            className="btn btn-primary"
-                            data-dismiss="modal"
-                            onClick={this.filter}
-                            disabled={!this.state.value}> Filter
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+                        data-dismiss="modal"
+                        onClick={this.filter}
+                        disabled={!this.state.value}> Filter
                     </button>
                 </div>
             </Modal>

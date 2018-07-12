@@ -1,9 +1,9 @@
 import React from 'react';
-import {Route, Switch} from "react-router-dom";
-import {Redirect} from "react-router";
+import {Route, Switch} from 'react-router-dom';
+import {Redirect} from 'react-router';
 
-import ListOfPostsContainer from "./posts/ListOfPostsContainer";
-import HeaderContainer from "./header/HeaderContainer";
+import ListOfPostsContainer from './posts/ListOfPostsContainer';
+import HeaderContainer from './header/HeaderContainer';
 
 const App = () => (
     <div>

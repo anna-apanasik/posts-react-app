@@ -15,6 +15,15 @@ const propTypes = {
     updatePost: PropTypes.func.isRequired
 };
 
+const defaultProps = {
+    editPost: false,
+    post: {
+        id: 0,
+        title: '',
+        text: ''
+    }
+};
+
 const REQUIRED_FIELD_VALIDATION_MESSAGE = 'This field is required',
     TOO_LONG_FIELD_VALIDATION_MESSAGE = 'This field is too long';
 
@@ -126,42 +135,46 @@ export default class PostModal extends Component {
             <Modal visible={this.props.isOpen} onClickBackdrop={this.props.closeModal}>
                 <div className="modal-header">
                     <h5 className="modal-title">Post</h5>
-                    <button type="button"
-                            className="close"
-                            onClick={this.props.closeModal}>
+                    <button
+                        type="button"
+                        className="close"
+                        onClick={this.props.closeModal}>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div className="modal-body">
                     <div className="form-group title-group">
                         <label>Title</label>
-                        <input type="text"
-                               value={this.state.title}
-                               onChange={this.handleChangeField}
-                               className="form-control form-control-sm"
-                               name="title"
-                               placeholder="Enter title"
-                               required/>
+                        <input
+                            type="text"
+                            value={this.state.title}
+                            onChange={this.handleChangeField}
+                            className="form-control form-control-sm"
+                            name="title"
+                            placeholder="Enter title"
+                            required/>
                         <span className="badge badge-danger">{this.state.formErrors.title}</span>
                     </div>
                     <div className="form-group text-group">
                         <label>Text</label>
-                        <textarea className="form-control"
-                                  rows="3"
-                                  value={this.state.text}
-                                  onChange={this.handleChangeField}
-                                  placeholder="Enter text"
-                                  name="text"
-                                  required/>
+                        <textarea
+                            className="form-control"
+                            rows="3"
+                            value={this.state.text}
+                            onChange={this.handleChangeField}
+                            placeholder="Enter text"
+                            name="text"
+                            required/>
                         <span className="badge badge-danger">{this.state.formErrors.text}</span>
                     </div>
                 </div>
                 <div className="modal-footer">
-                    <button type="button"
-                            className="btn btn-primary"
-                            data-dismiss="modal"
-                            onClick={this.savePost}
-                            disabled={!this.state.formValid}> Save
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+                        data-dismiss="modal"
+                        onClick={this.savePost}
+                        disabled={!this.state.formValid}> Save
                     </button>
                 </div>
             </Modal>
@@ -170,3 +183,4 @@ export default class PostModal extends Component {
 }
 
 PostModal.propTypes = propTypes;
+PostModal.defaultProps = defaultProps;

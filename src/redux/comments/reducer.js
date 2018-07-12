@@ -1,7 +1,7 @@
 import types from './types';
 
 const INITIAL_STATE = {
-    postId: undefined,
+    postId: 0,
     comments: [],
     putLike: false
 };
@@ -15,7 +15,7 @@ const commentReducer = (state = INITIAL_STATE, action) => {
                 postId: postId,
                 comments: comments,
                 putLike: false
-            }
+            };
         }
 
         case types.PUT_LIKE_ON_COMMENT: {
@@ -24,7 +24,7 @@ const commentReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 putLike: true,
                 postId: value
-            }
+            };
         }
 
         default:

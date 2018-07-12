@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
-import {commentOperations} from "../../../redux/comments";
-import ListOfComments from "../../components/comments/ListOfComments";
+import {commentOperations} from '../../../redux/comments';
+import ListOfComments from '../../components/comments/ListOfComments';
 
 const mapStateToProps = state => ({
     comments: state.comment.comments,

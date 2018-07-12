@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
-import ListOfPosts from "../../components/posts/ListOfPosts";
-import {postOperations} from "../../../redux/posts";
+import ListOfPosts from '../../components/posts/ListOfPosts';
+import {postOperations} from '../../../redux/posts';
 
 const mapStateToProps = state => ({
     posts: state.post.listOfPosts,

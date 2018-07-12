@@ -39,7 +39,7 @@ const postReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 postWasDeleted: true
-            }
+            };
         }
 
         case types.SORT_POSTS_BY_TYPE: {
@@ -47,7 +47,7 @@ const postReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 listOfPosts: value
-            }
+            };
         }
 
         case types.FILTER_POSTS_BY_TYPE_WITH_VALUE: {
@@ -55,7 +55,7 @@ const postReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 listOfPosts: value
-            }
+            };
         }
 
         default:

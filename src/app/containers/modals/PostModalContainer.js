@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
-import {postOperations} from "../../../redux/posts/index";
-import PostModal from "../../components/modals/PostModal";
+import {postOperations} from '../../../redux/posts/index';
+import PostModal from '../../components/modals/PostModal';
 
 const mapDispatchToProps = {
     createPost: postOperations.createPost,

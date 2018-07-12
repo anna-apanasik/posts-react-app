@@ -7,11 +7,12 @@ const getCommentsByPostId = (postId) => (dispatch) => {
         .get(appConstants.API_URL + `/posts/${postId}/comments`)
         .accept('application/json')
         .then(res => {
-            dispatch(actions.getListOfCommentsByPostIdAction({postId: postId, comments: res.body}))
+            let value = {postId: postId, comments: res.body};
+            dispatch(actions.getListOfCommentsByPostIdAction(value));
         })
-        .catch(error => {
-            //TODO error alert
-        })
+        .catch(() => {
+            //  TODO error alert
+        });
 };
 
 const putLikeOnComment = (comment) =>(dispatch) => {
@@ -22,12 +23,12 @@ const putLikeOnComment = (comment) =>(dispatch) => {
         .then(() => {
             dispatch(actions.putLikeOnCommentAction(comment.postId));
         })
-        .catch(error => {
-            //TODO error alert
-        })
+        .catch(() => {
+            //  TODO error alert
+        });
 };
 
 export default {
     getCommentsByPostId,
     putLikeOnComment
-}
+};
