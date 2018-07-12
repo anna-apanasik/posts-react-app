@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Collapse from 'react-css-collapse';
 import CommentItemContainer from "../../containers/comments/CommentItemContainer";
+import '../../styles/ListOfCommentsStyles.scss';
 
 const propTypes = {
     postId: PropTypes.number.isRequired,
@@ -45,7 +46,7 @@ export default class ListOfComments extends Component {
     render() {
         return (
             <Collapse isOpen={this.props.isOpen}>
-                <div className="container">
+                <div className="container comments-container">
                     {this.state.comments ?
                         this.state.comments.map((item, index) =>
                             <CommentItemContainer key={index} comment={item}/>) :

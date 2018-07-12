@@ -1,13 +1,15 @@
 .comment {
-  background-color: #28a745c7;
+  background: linear-gradient(to top left, rgba(110, 193, 135, 0.57), #27a945);
   font-size: small;
   border-radius: 1.5rem;
-
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
   .card-footer {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    line-height: 1.5rem;
+    line-height: 1.25rem;
     padding-bottom: 0.25rem;
     padding-top: 0.25rem;
 
@@ -15,8 +17,11 @@
       background: transparent;
       border: none;
       outline: none;
+      color: #c11910;
       &:hover {
-        font-size: large;
+        -webkit-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        transform: scale(1.5);
       }
     }
   }

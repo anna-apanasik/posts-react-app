@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PostModalContainer from "../../containers/modals/PostModalContainer";
 import FilterModalContainer from "../../containers/modals/FilterModalContainer";
 import ErrorModalContainer from "../../containers/modals/ErrorModalContainer";
+import {Shake} from 'reshake';
 import "../../styles/HeaderStyles.scss"
 
 const propTypes = {
@@ -55,7 +56,7 @@ export default class Header extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if(props.isOpenErrorModal !== state.isOpenErrorModal) {
+        if (props.isOpenErrorModal !== state.isOpenErrorModal) {
             return {
                 isOpenErrorModal: props.isOpenErrorModal
             };
@@ -84,23 +85,26 @@ export default class Header extends Component {
                     <div className="navbar-buttons">
                         {modals.map((item, index) => {
                             if (item.isButton) {
-                                return <button
-                                    className="btn btn-outline-success my-2 my-sm-0 add-post-button"
-                                    type="submit"
-                                    key={index}
-                                    onClick={() => this.openModal(item.isOpen)}>{item.text}
-                                </button>
+                                return <Shake h={5} v={5} r={5} key={index}>
+                                    <button
+                                        className="btn btn-outline-success my-2 my-sm-0 modal-button"
+                                        type="submit"
+                                        onClick={() => this.openModal(item.isOpen)}>{item.text}
+                                    </button>
+                                </Shake>
                             }
                         })}
                         <div className="dropdown">
-                            <button
-                                className="btn btn-outline-success dropdown-toggle sort-posts-button"
-                                type="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                                Sort
-                            </button>
+                            <Shake h={5} v={5} r={5}>
+                                <button
+                                    className="btn btn-outline-success dropdown-toggle sort-posts-button"
+                                    type="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Sort
+                                </button>
+                            </Shake>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 {sortingTypes.map((item, index) =>
                                     <button
@@ -112,6 +116,7 @@ export default class Header extends Component {
                             </div>
                         </div>
                     </div>
+
                 </nav>
                 <div>
                     {modals.map((item, index) =>
