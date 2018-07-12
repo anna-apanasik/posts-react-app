@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import PostModalContainer from "../../containers/modals/PostModalContainer";
 import FilterModalContainer from "../../containers/modals/FilterModalContainer";
+import ErrorModalContainer from "../../containers/modals/ErrorModalContainer";
 import "../../styles/HeaderStyles.scss"
 
 const propTypes = {
-    sortByType: PropTypes.func.isRequired
+    sortByType: PropTypes.func.isRequired,
+    isOpenErrorModal: PropTypes.bool.isRequired
 };
 
 const sortingTypes = [
@@ -18,30 +20,48 @@ const sortingTypes = [
         name: 'By text'
     }];
 
-const openModalButtons = [
+const modals = [
     {
         component: PostModalContainer,
+        isButton: true,
         text: 'Add Post',
         isOpen: 'isOpenPostModal'
     },
     {
         component: FilterModalContainer,
+        isButton: true,
         text: 'Filter',
         isOpen: 'isOpenFilterModal'
+    },
+    {
+        component: ErrorModalContainer,
+        isButton: false,
+        isOpen: 'isOpenErrorModal'
     }
 ];
 
 export default class Header extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             isOpenPostModal: false,
             isOpenFilterModal: false,
+            isOpenErrorModal: this.props.isOpenErrorModal
         };
 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.sortByType = this.sortByType.bind(this);
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if(props.isOpenErrorModal !== state.isOpenErrorModal) {
+            return {
+                isOpenErrorModal: props.isOpenErrorModal
+            };
+        }
+
+        return null;
     }
 
     openModal(modalName) {
@@ -62,13 +82,16 @@ export default class Header extends Component {
                 <nav className="navbar navbar-expand-lg navbar-light bg-light header-container">
                     <a className="navbar-brand">React App</a>
                     <div className="navbar-buttons">
-                        {openModalButtons.map((item, index) =>
-                            <button
-                                className="btn btn-outline-success my-2 my-sm-0 add-post-button"
-                                type="submit"
-                                key={index}
-                                onClick={() => this.openModal(item.isOpen)}>{item.text}
-                            </button>)}
+                        {modals.map((item, index) => {
+                            if (item.isButton) {
+                                return <button
+                                    className="btn btn-outline-success my-2 my-sm-0 add-post-button"
+                                    type="submit"
+                                    key={index}
+                                    onClick={() => this.openModal(item.isOpen)}>{item.text}
+                                </button>
+                            }
+                        })}
                         <div className="dropdown">
                             <button
                                 className="btn btn-outline-success dropdown-toggle sort-posts-button"
@@ -91,7 +114,7 @@ export default class Header extends Component {
                     </div>
                 </nav>
                 <div>
-                    {openModalButtons.map((item, index) =>
+                    {modals.map((item, index) =>
                         <item.component
                             key={index}
                             isOpen={this.state[item.isOpen]}

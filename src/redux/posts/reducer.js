@@ -4,7 +4,9 @@ const INITIAL_STATE = {
     listOfPosts: [],
     postWasCreated: false,
     postWasUpdated: false,
-    postWasDeleted: false
+    postWasDeleted: false,
+    isOpenErrorModal: false,
+    error: {}
 };
 
 const postReducer = (state = INITIAL_STATE, action) => {

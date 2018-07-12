@@ -1,6 +1,7 @@
 import actions from './actions';
 import * as request from 'superagent';
 import appConstants from '../constants';
+import {commonActions} from '../common';
 
 const getListOfPosts = () => (dispatch) => {
     request
@@ -9,8 +10,8 @@ const getListOfPosts = () => (dispatch) => {
         .then(res => {
             dispatch(actions.getListOfPostsAction(res.body));
         })
-        .catch(() => {
-            //  TODO error alert
+        .catch(error => {
+            dispatch(commonActions.showErrorAction(error));
         });
 };
 
@@ -22,8 +23,8 @@ const createPost = (post) => (dispatch) => {
         .then(() => {
             dispatch(actions.createPostAction());
         })
-        .catch(() => {
-            //  TODO error alert
+        .catch(error => {
+            dispatch(commonActions.showErrorAction(error));
         });
 };
 
@@ -35,8 +36,8 @@ const updatePost = (post) => (dispatch) => {
         .then(() => {
             dispatch(actions.updatePostAction());
         })
-        .catch(() => {
-            //  TODO error alert
+        .catch(error => {
+            dispatch(commonActions.showErrorAction(error));
         });
 };
 
@@ -47,8 +48,8 @@ const deletePost = (id) => (dispatch) => {
         .then(() => {
             dispatch(actions.deletePostAction());
         })
-        .catch(() => {
-            //  TODO error alert
+        .catch(error => {
+            dispatch(commonActions.showErrorAction(error));
         });
 };
 
@@ -59,8 +60,8 @@ const sortByType = (type) => (dispatch) => {
         .then(res => {
             dispatch(actions.sortByTypeAction(res.body));
         })
-        .catch(() => {
-            //  TODO error alert
+        .catch(error => {
+            dispatch(commonActions.showErrorAction(error));
         });
 };
 
@@ -71,8 +72,8 @@ const filterByTypeWithValue = (type, value) => (dispatch) => {
         .then(res => {
             dispatch(actions.filterByTypeWithValueAction(res.body));
         })
-        .catch(() => {
-            //  TODO error alert
+        .catch(error => {
+            dispatch(commonActions.showErrorAction(error));
         });
 };
 

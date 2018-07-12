@@ -17,6 +17,7 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "reshake": "^1.0.8",
     "superagent": "^3.8.3"
   },
   "scripts": {

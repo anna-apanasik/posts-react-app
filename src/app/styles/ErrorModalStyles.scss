@@ -1,0 +1,17 @@
+.modal-body {
+  .error-icon {
+    text-align: center;
+    svg {
+      font-size: 4rem;
+      g {
+        color: #ff0000c4;
+      }
+    }
+  }
+
+  .error-message {
+    text-align: center;
+    padding: 25px;
+    font-weight: 500;
+  }
+}

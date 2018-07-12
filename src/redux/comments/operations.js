@@ -1,6 +1,7 @@
 import actions from './actions';
 import * as request from 'superagent';
 import appConstants from '../constants';
+import {commonActions} from '../common';
 
 const getCommentsByPostId = (postId) => (dispatch) => {
     request
@@ -10,12 +11,12 @@ const getCommentsByPostId = (postId) => (dispatch) => {
             let value = {postId: postId, comments: res.body};
             dispatch(actions.getListOfCommentsByPostIdAction(value));
         })
-        .catch(() => {
-            //  TODO error alert
+        .catch(error => {
+            dispatch(commonActions.showErrorAction(error));
         });
 };
 
-const putLikeOnComment = (comment) =>(dispatch) => {
+const putLikeOnComment = (comment) => (dispatch) => {
     request
         .put(appConstants.API_URL + `/comments/${comment.id}`)
         .accept('application/json')
@@ -23,8 +24,8 @@ const putLikeOnComment = (comment) =>(dispatch) => {
         .then(() => {
             dispatch(actions.putLikeOnCommentAction(comment.postId));
         })
-        .catch(() => {
-            //  TODO error alert
+        .catch(error => {
+            dispatch(commonActions.showErrorAction(error));
         });
 };
 
