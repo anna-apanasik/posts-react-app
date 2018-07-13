@@ -2,9 +2,7 @@ import types from './types';
 
 const INITIAL_STATE = {
     listOfPosts: [],
-    postWasCreated: false,
-    postWasUpdated: false,
-    postWasDeleted: false,
+    postWasChanged: false,
     isOpenErrorModal: false,
     error: {}
 };
@@ -16,9 +14,7 @@ const postReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 listOfPosts: value,
-                postWasCreated: false,
-                postWasUpdated: false,
-                postWasDeleted: false,
+                postWasChanged: false,
                 postsWereSortedByType: false
             };
         }
@@ -26,21 +22,21 @@ const postReducer = (state = INITIAL_STATE, action) => {
         case types.CREATE_POST: {
             return {
                 ...state,
-                postWasCreated: true
+                postWasChanged: true
             };
         }
 
         case types.UPDATE_POST: {
             return {
                 ...state,
-                postWasUpdated: true
+                postWasChanged: true
             };
         }
 
         case types.DELETE_POST: {
             return {
                 ...state,
-                postWasDeleted: true
+                postWasChanged: true
             };
         }
 

@@ -5,18 +5,14 @@ import '../../styles/ListOfPostsStyles.scss'
 
 const propTypes = {
     listOfPosts: PropTypes.array,
-    postWasCreated: PropTypes.bool,
-    postWasUpdated: PropTypes.bool,
-    postWasDeleted: PropTypes.bool,
+    postWasChanged: PropTypes.bool,
     getListOfPosts: PropTypes.func.isRequired,
     getUsers: PropTypes.func.isRequired
 };
 
 const defaultProps = {
     listOfPosts: [],
-    postWasCreated: false,
-    postWasUpdated: false,
-    postWasDeleted: false
+    postWasChanged: false
 };
 
 export default class ListOfPosts extends Component {
@@ -26,7 +22,7 @@ export default class ListOfPosts extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        if (nextProps.postWasCreated || nextProps.postWasUpdated || nextProps.postWasDeleted) {
+        if (nextProps.postWasChanged) {
             this.props.getListOfPosts();
         }
         return true;
@@ -39,9 +35,10 @@ export default class ListOfPosts extends Component {
                 <div className="col-6">
                     <h1 className="title">Posts</h1>
                     <ul className="list-of-posts">
-                        {posts.map(item => <li key={item.id}>
-                            <PostItemContainer post={item}/>
-                        </li>)}
+                        {posts.length > 0 ? posts.map(item => <li key={item.id}>
+                                <PostItemContainer post={item}/>
+                            </li>) :
+                            <p className="display-4">You don't have posts...</p>}
                     </ul>
                 </div>
             </div>
