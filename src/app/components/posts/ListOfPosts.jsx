@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import PostItemContainer from "../../containers/posts/PostItemContainer";
-import "../../styles/ListOfPostsStyles.scss"
+import '../../styles/ListOfPostsStyles.scss'
 
 const propTypes = {
     listOfPosts: PropTypes.array,
     postWasCreated: PropTypes.bool,
     postWasUpdated: PropTypes.bool,
-    postWasDeleted: PropTypes.bool
+    postWasDeleted: PropTypes.bool,
+    getListOfPosts: PropTypes.func.isRequired,
+    getUsers: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -20,6 +22,7 @@ const defaultProps = {
 export default class ListOfPosts extends Component {
     componentDidMount() {
         this.props.getListOfPosts();
+        this.props.getUsers();
     }
 
     shouldComponentUpdate(nextProps) {

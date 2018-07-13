@@ -5,18 +5,20 @@ import CommentItemContainer from "../../containers/comments/CommentItemContainer
 import '../../styles/ListOfCommentsStyles.scss';
 
 const propTypes = {
+    isOpen: PropTypes.bool.isRequired,
     postId: PropTypes.number.isRequired,
     postIdFromRequest: PropTypes.number,
     putLike: PropTypes.bool,
     comments: PropTypes.array,
-    isOpen: PropTypes.bool.isRequired,
+    commentWasChanged: PropTypes.bool,
     getCommentsByPostId: PropTypes.func.isRequired
 };
 
 const defaultProps = {
     postIdFromRequest: 0,
     putLike: false,
-    comments: []
+    comments: [],
+    commentWasChanged: false
 };
 
 export default class ListOfComments extends Component {
@@ -29,14 +31,13 @@ export default class ListOfComments extends Component {
         this.props.getCommentsByPostId(this.props.postId);
     }
 
-    static getDerivedStateFromProps(props) {
-        if (props.postIdFromRequest === props.postId) {
-            return {
-                comments: props.comments
-            };
+    static getDerivedStateFromProps(props, state) {
+        if (props.postIdFromRequest === props.postId &&
+            props.comments !== state.comments) {
+            return {comments: props.comments};
         }
 
-        if (props.putLike) {
+        if (props.putLike || props.commentWasChanged) {
             props.getCommentsByPostId(props.postIdFromRequest);
         }
 
@@ -45,7 +46,9 @@ export default class ListOfComments extends Component {
 
     render() {
         return (
-            <Collapse isOpen={this.props.isOpen}>
+            <Collapse
+                isOpen={this.props.isOpen}
+                className={this.props.isOpen ? "collapse-container" : null}>
                 <div className="container comments-container">
                     {this.state.comments ?
                         this.state.comments.map((item, index) =>

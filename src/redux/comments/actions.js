@@ -10,7 +10,13 @@ const putLikeOnCommentAction = (value) => ({
     value: value
 });
 
+const createCommentAction = (value) => ({
+    type: types.CREATE_COMMENT,
+    value: value
+});
+
 export default {
     getListOfCommentsByPostIdAction,
-    putLikeOnCommentAction
+    putLikeOnCommentAction,
+    createCommentAction
 };

@@ -63,7 +63,7 @@ export default class FilterModal extends Component {
                         <label>Select type of filter</label>
                         <select
                             className="form-control"
-                            onSelect={this.handleChangeSelect}>
+                            onClick={this.handleChangeSelect}>
                             {filteringTypes.map((item, index) =>
                                 <option
                                     key={index}

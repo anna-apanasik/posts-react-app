@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import PostModalContainer from "../../containers/modals/PostModalContainer";
 import ListOfCommentsContainer from "../../containers/comments/ListOfCommentsContainer";
+import MdAdd from 'react-icons/lib/md/add';
 import "../../styles/PostItemStyles.scss";
+import CommentModalContainer from "../../containers/modals/CommentModalContainer";
 
 const propTypes = {
     post: PropTypes.shape({
@@ -13,16 +15,20 @@ const propTypes = {
     deletePost: PropTypes.func.isRequired
 };
 
+const POST_MODAL = 'isOpenPostModal',
+    COMMENT_MODAL = 'isOpenCommentModal';
+
 export default class PostItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpenEditModal: false,
-            isOpenCollapse: false
+            isOpenPostModal: false,
+            isOpenCollapse: false,
+            isOpenCommentModal: false
         };
 
         this.deletePost = this.deletePost.bind(this);
-        this.openEditModal = this.openEditModal.bind(this);
+        this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
@@ -30,12 +36,13 @@ export default class PostItem extends Component {
         this.props.deletePost(this.props.post.id);
     }
 
-    openEditModal() {
-        this.setState({isOpenEditModal: true});
+    openModal(modalName) {
+        this.setState({[modalName]: true});
     }
 
-    closeModal() {
-        this.setState({isOpenEditModal: false});
+
+    closeModal(modalName) {
+        this.setState({[modalName]: false});
     }
 
     render() {
@@ -49,7 +56,7 @@ export default class PostItem extends Component {
                             <button
                                 type="button"
                                 className="edit-button post-button"
-                                onClick={this.openEditModal}>
+                                onClick={() => this.openModal(POST_MODAL)}>
                                 <p>Edit</p>
                             </button>
                             <button
@@ -61,19 +68,31 @@ export default class PostItem extends Component {
                         </div>
                     </div>
                     <p className="card-text">{post.text}</p>
-                    <button
-                        type="button"
-                        className="comments-button"
-                        onClick={() => this.setState({isOpenCollapse: !this.state.isOpenCollapse})}>
-                        <p aria-hidden="true">Comments</p>
-                    </button>
+                    <div className="card-footer post-footer">
+                        <button
+                            type="button"
+                            className="comments-buttons show-comments-button"
+                            onClick={() => this.setState({isOpenCollapse: !this.state.isOpenCollapse})}>
+                            <p aria-hidden="true">Comments</p>
+                        </button>
+                        <button
+                            type="button"
+                            className="comments-buttons add-comment-button"
+                            onClick={() => this.openModal(COMMENT_MODAL)}>
+                            <MdAdd/>
+                        </button>
+                    </div>
                 </div>
                 <div>
                     <PostModalContainer
-                        isOpen={this.state.isOpenEditModal}
+                        isOpen={this.state.isOpenPostModal}
                         editPost
-                        closeModal={this.closeModal}
+                        closeModal={() => this.closeModal(POST_MODAL)}
                         post={post}/>
+                    <CommentModalContainer
+                        isOpen={this.state.isOpenCommentModal}
+                        postId={post.id}
+                        closeModal={() => this.closeModal(COMMENT_MODAL)}/>
                     <ListOfCommentsContainer
                         postId={post.id}
                         isOpen={this.state.isOpenCollapse}/>

@@ -31,7 +31,7 @@
     "import/no-unresolved": 0,
     "import/extensions": 1,
     "no-debugger": 2,
-    "no-console": 1,
+//    "no-console": 1,
     "no-param-reassign": ["error", { "props": false }],
     "no-underscore-dangle": 0,
     "no-return-assign": 1,

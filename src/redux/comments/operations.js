@@ -29,7 +29,21 @@ const putLikeOnComment = (comment) => (dispatch) => {
         });
 };
 
+const createComment = (comment) => (dispatch) => {
+    request
+        .post(appConstants.API_URL + '/comments')
+        .accept('application/json')
+        .send(comment)
+        .then(() => {
+            dispatch(actions.createCommentAction(comment.postId));
+        })
+        .catch(error => {
+            dispatch(commonActions.showErrorAction(error));
+        });
+};
+
 export default {
     getCommentsByPostId,
-    putLikeOnComment
+    putLikeOnComment,
+    createComment
 };

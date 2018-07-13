@@ -3,7 +3,8 @@ import types from './types';
 const INITIAL_STATE = {
     postId: 0,
     comments: [],
-    putLike: false
+    putLike: false,
+    commentWasChanged: false
 };
 
 const commentReducer = (state = INITIAL_STATE, action) => {
@@ -14,7 +15,8 @@ const commentReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 postId: postId,
                 comments: comments,
-                putLike: false
+                putLike: false,
+                commentWasChanged: false
             };
         }
 
@@ -24,6 +26,15 @@ const commentReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 putLike: true,
                 postId: value
+            };
+        }
+
+        case types.CREATE_COMMENT: {
+            const {value} = action;
+            return {
+                ...state,
+                postId: value,
+                commentWasChanged: true
             };
         }
 

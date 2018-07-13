@@ -5,6 +5,11 @@
   &:last-child {
     margin-bottom: 0 !important;
   }
+
+  .card-text {
+    margin-bottom: 5px;
+  }
+
   .card-footer {
     display: inline-flex;
     justify-content: space-between;

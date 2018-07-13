@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {commonOperations} from '../../../redux/common/index';
+import {commonOperations} from '../../../redux/common';
 import ErrorModal from '../../components/modals/ErrorModal';
 
 const mapStateToProps = state => ({

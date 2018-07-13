@@ -6,7 +6,7 @@ import Particles from 'react-particles-js';
 import ListOfPostsContainer from './posts/ListOfPostsContainer';
 import HeaderContainer from './header/HeaderContainer';
 import constants from './constants';
-import '../styles/AppStyles.scss';
+// import '../styles/AppStyles.scss';
 
 const App = () => (
     <div>

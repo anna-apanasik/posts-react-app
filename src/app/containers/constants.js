@@ -8,13 +8,13 @@ const paramsParticles = {
             }
         },
         color: {
-            value: "#27a945"
+            value: '#27a945'
         },
         shape: {
             type: 'circle',
             stroke: {
                 width: 0,
-                color: "#000000"
+                color: '#000000'
             },
             polygon: {
                 nb_sides: 5
@@ -45,7 +45,7 @@ const paramsParticles = {
             distance: 150,
             opacity: 0.8,
             width: 1,
-            color: '#27a945',
+            color: '#27a945'
         },
         move: {
             enable: true,
@@ -60,7 +60,7 @@ const paramsParticles = {
                 rotateX: 600,
                 rotateY: 1200
             }
-        },
+        }
     },
     interactivity: {
         detect_on: 'canvas',
@@ -117,4 +117,4 @@ const stylesParticles = {
 export default {
     paramsParticles,
     stylesParticles
-}
+};

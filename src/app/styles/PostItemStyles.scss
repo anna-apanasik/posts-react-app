@@ -40,18 +40,32 @@
     }
   }
 
-  .comments-button {
+  .post-footer {
     background: transparent;
-    border: none;
-    font-size: small;
     padding: 0;
-    font-weight: bold;
-    outline: none;
-    color: gray;
-    &:hover {
-      -webkit-transform: scale(1.2);
-      -ms-transform: scale(1.2);
-      transform: scale(1.2);
+    border-top: none;
+
+    .comments-buttons {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: gray;
+      font-weight: bold;
+      &:hover {
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+      }
+    }
+
+    .show-comments-button {
+      font-size: small;
+      padding: 0 5px 0 0;
+    }
+
+    .add-comment-button {
+      font-size: 1.25rem;
     }
   }
+
 }
